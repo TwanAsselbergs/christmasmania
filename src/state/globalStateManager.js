@@ -1,16 +1,16 @@
 export const statePropsEnum = {
   playerHp: "playerHp",
   isDoubleJumpUnlocked: "isDoubleJumpUnlocked",
-  playerIsInBossFight: "playerInBossFight",
+  playerInBossFight: "playerInBossFight",
   isBossDefeated: "isBossDefeated",
 };
 
 function initStateManager() {
   const state = {
-    playerHp: 3,
-    maxPlayerHp: 3,
-    isDoubleJumpUnlocked: false,
-    playerIsInBossFight: false,
+    playerHp: 1,
+    maxPlayerHp: 1,
+    isDoubleJumpUnlocked: true,
+    playerInBossFight: false,
     isBossDefeated: false,
   };
 
