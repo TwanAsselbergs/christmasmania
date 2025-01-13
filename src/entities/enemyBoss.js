@@ -20,12 +20,11 @@ export function makeBoss(k, initialPos) {
     k.health(20),
     k.opacity(1),
     {
-      pursuitSpeed: 200,
-      fireRange: 40,
+      pursuitSpeed: 300,
+      fireRange: 50,
       fireDuration: 0.02,
       setBehavior() {
         const player = k.get("player", { recursive: true })[0];
-        this.opacity = 0.25;
 
         this.onStateUpdate("idle", () => {
           if (state.current().playerInBossFight) {
@@ -52,13 +51,15 @@ export function makeBoss(k, initialPos) {
           if (this.curAnim() !== "fire") this.play("fire");
           const flamethrowerSound = k.play("flamethrower");
           const fireHitbox = this.add([
-            k.area({ shape: new k.Rect(k.vec2(0), 70, 10) }),
+            k.area({
+              shape: new k.Rect(k.vec2(this.flipX ? -70 : 0, 5), 140, 20),
+            }), // Wider and slightly taller
             k.pos(this.flipX ? -70 : 0, 5),
             "fire-hitbox",
           ]);
 
           fireHitbox.onCollide("player", () => {
-            player.hurt(1);
+            player.hurt(3);
             if (player.hp() === 0)
               state.set(statePropsEnum.playerInBossFight, false);
           });
