@@ -1,13 +1,12 @@
 import { state, statePropsEnum } from "../state/globalStateManager.js";
+import { healthBar } from "../ui/healthBar.js";
 import { makeBlink } from "./entitySharedLogic.js";
 
 export function makePlayer(k) {
   return k.make([
     k.pos(),
     k.sprite("player"),
-    k.area({
-      shape: new k.Rect(k.vec2(0, 18), 12, 12),
-    }),
+    k.area({ shape: new k.Rect(k.vec2(0, 18), 12, 12) }),
     k.anchor("center"),
     k.body({ mass: 100, jumpForce: 320 }),
     k.doubleJump(state.current().isDoubleJumpUnlocked ? 2 : 1),
@@ -98,25 +97,30 @@ export function makePlayer(k) {
               this.curAnim() !== "jump" &&
               this.curAnim() !== "fall" &&
               this.curAnim() !== "attack"
-            ) {
+            )
               this.play("idle");
-            }
           })
         );
       },
+
       disableControls() {
         for (const handler of this.controlHandlers) {
           handler.cancel();
         }
       },
 
-      respawnIfOutBounds(
+      respawnIfOutOfBounds(
         boundValue,
         destinationName,
-        previousSceneData = { exitname: null }
+        previousSceneData = { exitName: null }
       ) {
-        // TODO
+        k.onUpdate(() => {
+          if (this.pos.y > boundValue) {
+            k.go(destinationName, previousSceneData);
+          }
+        });
       },
+
       setEvents() {
         this.onFall(() => {
           this.play("fall");
@@ -125,29 +129,27 @@ export function makePlayer(k) {
         this.onFallOff(() => {
           this.play("fall");
         });
-
         this.onGround(() => {
           this.play("idle");
         });
-
         this.onHeadbutt(() => {
           this.play("fall");
         });
 
         this.on("heal", () => {
           state.set(statePropsEnum.playerHp, this.hp());
-          // TODO: Healthbar
+          healthBar.trigger("update");
         });
 
         this.on("hurt", () => {
           makeBlink(k, this);
           if (this.hp() > 0) {
-            state.set(statePropsEnum.playerHp);
-            // TODO: Healthbar
+            state.set(statePropsEnum.playerHp, this.hp());
+            healthBar.trigger("update");
             return;
           }
 
-          state.set(statePropsEnum.playerHp, state.current().maxPlayerHp);
+          state.set(statePropsEnum.playerHp, 1);
           k.play("boom");
           this.play("explode");
         });
@@ -158,6 +160,7 @@ export function makePlayer(k) {
           }
         });
       },
+
       enableDoubleJump() {
         this.numJumps = 2;
       },
