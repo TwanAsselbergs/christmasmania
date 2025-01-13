@@ -57,7 +57,6 @@ export function setMapColliders(k, map, colliders) {
               k.easings.linear
             );
           },
-
           async deactivate(playerPosX) {
             k.tween(
               this.opacity,
@@ -77,6 +76,7 @@ export function setMapColliders(k, map, colliders) {
           },
         },
       ]);
+
       bossBarrier.onCollide("player", async (player) => {
         const currentState = state.current();
         if (currentState.isBossDefeated) {
@@ -86,7 +86,6 @@ export function setMapColliders(k, map, colliders) {
         }
 
         if (currentState.playerInBossFight) return;
-
         player.disableControls();
         player.play("idle");
         await k.tween(
@@ -105,6 +104,7 @@ export function setMapColliders(k, map, colliders) {
           return;
 
         state.set(statePropsEnum.playerInBossFight, true);
+
         bossBarrier.activate();
         bossBarrier.use(k.body({ isStatic: true }));
       });
@@ -129,20 +129,13 @@ export function setCameraControls(k, player, map, roomData) {
   k.onUpdate(() => {
     if (state.current().playerInBossFight) return;
 
-    if (map.pos.x + 160 > player.pos.x) {
-      k.camPos(map.pos.x + 160, k.camPos().y);
-      return;
-    }
+    const minX = map.pos.x + 160;
 
-    if (player.pos.x > map.pos.x + roomData.width * roomData.tilewidth - 160) {
-      k.camPos(
-        map.pos.x + roomData.width * roomData.tilewidth - 160,
-        k.camPos().y
-      );
-      return;
-    }
+    const maxX = map.pos.x + roomData.width * roomData.tilewidth - 160;
 
-    k.camPos(player.pos.x, k.camPos().y);
+    const cameraX = Math.max(minX, Math.min(player.pos.x, maxX));
+
+    k.camPos(cameraX, k.camPos().y);
   });
 }
 
@@ -166,6 +159,43 @@ export function setCameraZones(k, map, cameras) {
           k.easings.linear
         );
       }
+    });
+  }
+}
+
+export function setExitZones(k, map, exits, destinationName) {
+  for (const exit of exits) {
+    const exitZone = map.add([
+      k.pos(exit.x, exit.y),
+      k.area({
+        shape: new k.Rect(k.vec2(0), exit.width, exit.height),
+        collisionIgnore: ["collider"],
+      }),
+      k.body({ isStatic: true }),
+      exit.name,
+    ]);
+
+    exitZone.onCollide("player", async () => {
+      const background = k.add([
+        k.pos(-k.width(), 0),
+        k.rect(k.width(), k.height()),
+        k.color("#20214a"),
+      ]);
+
+      await k.tween(
+        background.pos.x,
+        0,
+        0.3,
+        (val) => (background.pos.x = val),
+        k.easings.linear
+      );
+
+      if (exit.name === "final-exit") {
+        k.go("final-exit");
+        return;
+      }
+
+      k.go(destinationName, { exitName: exit.name });
     });
   }
 }
