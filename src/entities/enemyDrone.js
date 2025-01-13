@@ -82,7 +82,7 @@ export function makeDrone(k, initialPos) {
         this.onCollide("player", () => {
           if (player.isAttacking) return;
           this.hurt(1);
-          player.hurt(1);
+          player.hurt(2);
         });
 
         this.onAnimEnd((anim) => {
