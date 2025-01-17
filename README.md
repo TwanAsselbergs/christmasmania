@@ -15,3 +15,6 @@
 - **Algemeen:**
     - Top: De physics, het is een hele makkelijke intuitieve manier van besturen
     - Tip: Met het slaan, laat de hitbox helemaal lopen vanaf je character tot het zwaard zelf en dan misschien nog iets meer, het is best raar als je iemand niet kan raken als je er letterlijk tegenaan loopt
+ 
+
+  Geschreven door Rick
