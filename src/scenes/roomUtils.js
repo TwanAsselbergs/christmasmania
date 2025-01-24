@@ -129,13 +129,20 @@ export function setCameraControls(k, player, map, roomData) {
   k.onUpdate(() => {
     if (state.current().playerInBossFight) return;
 
-    const minX = map.pos.x + 160;
+    if (map.pos.x + 160 > player.pos.x) {
+      k.camPos(map.pos.x + 160, k.camPos().y);
+      return;
+    }
 
-    const maxX = map.pos.x + roomData.width * roomData.tilewidth - 160;
+    if (player.pos.x > map.pos.x + roomData.width * roomData.tilewidth - 160) {
+      k.camPos(
+        map.pos.x + roomData.width * roomData.tilewidth - 160,
+        k.camPos().y
+      );
+      return;
+    }
 
-    const cameraX = Math.max(minX, Math.min(player.pos.x, maxX));
-
-    k.camPos(cameraX, k.camPos().y);
+    k.camPos(player.pos.x, k.camPos().y);
   });
 }
 

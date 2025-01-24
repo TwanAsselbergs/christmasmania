@@ -20,7 +20,7 @@ async function main() {
     k.add(
       makeNotificationBox(
         k,
-        "You escaped the factory!\n The End. Thanks for playing!"
+        "Je ontsnapt uit de fabriek!\n\nBedankt voor het spelen!"
       )
     );
   });
@@ -31,7 +31,7 @@ k.scene("intro", () => {
   k.add(
     makeNotificationBox(
       k,
-      "Escape the factory!\n\nUse WASD to move, Spacebar to jump, and Left Click to attack.\n\nPress Enter to start!"
+      "Ontsnap uit de fabriek!\n\n\n\nGebruik WASD om te bewegen, Spacebar om te springen\n\nen Left Click om aan te vallen.\n\n\n\nDruk Enter om te starten!"
     )
   );
   k.onKeyPress("enter", () => {

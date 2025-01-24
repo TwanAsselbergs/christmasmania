@@ -17,12 +17,12 @@ export function makeBoss(k, initialPos) {
       "shut-fire",
       "explode",
     ]),
-    k.health(20),
+    k.health(10),
     k.opacity(1),
     {
-      pursuitSpeed: 300,
+      pursuitSpeed: 200,
       fireRange: 50,
-      fireDuration: 0.02,
+      fireDuration: 0.03,
       setBehavior() {
         const player = k.get("player", { recursive: true })[0];
 
@@ -53,7 +53,7 @@ export function makeBoss(k, initialPos) {
           const fireHitbox = this.add([
             k.area({
               shape: new k.Rect(k.vec2(this.flipX ? -70 : 0, 5), 140, 20),
-            }), // Wider and slightly taller
+            }),
             k.pos(this.flipX ? -70 : 0, 5),
             "fire-hitbox",
           ]);
