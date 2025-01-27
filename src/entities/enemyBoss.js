@@ -118,7 +118,7 @@ export function makeBoss(k, initialPos) {
           const notification = k.add(
             makeNotificationBox(
               k,
-              "You unlocked a new ability!\nYou can now double jump."
+              "Je hebt een ability unlocked!\nJe kan nu double jumpen."
             )
           );
           k.wait(3, () => notification.close());
