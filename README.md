@@ -1,20 +1,41 @@
-## Vragenlijst
+# Christmasmania
 
-- **Beweging:**
-    - Top: Het springen was heel smooth, en heen en weer bewegen voelde ook heel intuitief
-    - Tip: Alleen dat je soms door muren heenglitchte, of dat als je tegen een muur aanloopt dat ie je dan de hele tijd er een klein beetje  en daarna weer uit gooit
-- **Besturing:**
-    - Top: Degene die me was gegeven was heel intuitief, gewoon WASD is perfect voor dit soort spellen
-    - Tip: Alleen het niet kunnen slaan mid-air was een beetje een learning-curve
-- **Beloning:**
-    - Top: Die levenspunten waren zeker wel clean
-    - Tip: Op zich zou het cool zijn als er iets in je character veranderd als je veel levenspunten hebt
-- **Progressie:**
-    - Top: Ja want het is een best moeilijke game waar je echt wel even voor moet zitten
-    - Tip: Op zich, die eerste vliegende dingen aan het begin van het spel die one-shotten, ik zou ze zelf zo maken dat je 2 keer geraakt moet worden
-- **Algemeen:**
-    - Top: De physics, het is een hele makkelijke intuitieve manier van besturen
-    - Tip: Met het slaan, laat de hitbox helemaal lopen vanaf je character tot het zwaard zelf en dan misschien nog iets meer, het is best raar als je iemand niet kan raken als je er letterlijk tegenaan loopt
- 
 
-  Geschreven door Rick
+## Table of Contents
+
+  - [Overview](#overview)
+  - [Author(s)](#authors)
+  - [License](#license)
+
+
+## Overview
+
+This portfolio was built as a personal project of mine. I use it for school and to showcase my work, skills, and additional information about myself to companies and clients.
+
+1. Front-end (`/index.html`)
+
+   - A user-friendly application designed for customers to browse products and place orders.
+   - Provides a seamless ordering experience on a touchscreen or kiosk.
+
+2. API (`/server`)
+
+   - Supplies product data to the front-end.
+   - Handles incoming orders by storing them in the database.
+   - Uses WebSockets to broadcast new orders to the dashboard in real time.
+
+3. Back-end (`/dashboard`)
+
+   - A dashboard accessible only to employees.
+   - Displays incoming orders and relevant statistics for order management.
+
+
+## Author(s)
+
+- **Twan Asselbergs** - [TwanAsselbergs](https://github.com/TwanAsselbergs)
+
+
+## License
+
+This project is licensed under the [MIT](LICENSE.md)
+License - see the [LICENSE.md](LICENSE.md) file for
+details
