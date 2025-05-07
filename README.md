@@ -10,23 +10,15 @@
 
 ## Overview
 
-This portfolio was built as a personal project of mine. I use it for school and to showcase my work, skills, and additional information about myself to companies and clients.
+Christmasmania is a JavaScript retro game built for as a school project. It uses the Kaboom.js game library which made the process of building a JavaScript game a lot easier.
 
-1. Front-end (`/index.html`)
+1. Front-end (`/src`)
 
-   - A user-friendly application designed for customers to browse products and place orders.
-   - Provides a seamless ordering experience on a touchscreen or kiosk.
+   - All the front-end code of the game, like the logic of the player and the enemies.
 
-2. API (`/server`)
+2. API (`/maps`)
 
-   - Supplies product data to the front-end.
-   - Handles incoming orders by storing them in the database.
-   - Uses WebSockets to broadcast new orders to the dashboard in real time.
-
-3. Back-end (`/dashboard`)
-
-   - A dashboard accessible only to employees.
-   - Displays incoming orders and relevant statistics for order management.
+   - All scenes of the game. Has both the room and the JSON data inside.
 
 
 ## Author(s)
