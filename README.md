@@ -16,7 +16,7 @@ Christmasmania is a JavaScript retro game built for as a school project. It uses
 
    - All the front-end code of the game, like the logic of the player and the enemies.
 
-2. API (`/maps`)
+2. Scenes (`/maps`)
 
    - All scenes of the game. Has both the room and its JSON data inside.
 
